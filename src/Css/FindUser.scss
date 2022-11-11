@@ -1,0 +1,54 @@
+.find {
+    padding-top:3rem;
+    height:calc(100vh - 9rem);
+    min-height:unset;
+    .input-box + .input-box { margin-top:2.4rem; }
+    p.guide-info {
+        font-size   : 1.6rem;
+        font-family : 'Pretendard',sans-serif;
+        margin-bottom : 4.7rem;
+    }
+}
+
+.success {
+    padding-top:10rem;
+    .info-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height:12rem;
+        
+        .main-img {
+            width:3.186rem;
+            height:2.317rem;
+        }
+
+        p {
+           font-size:2rem;
+           font-family: 'SCoreDream4',sans-serif; 
+           line-height:1.4;
+            color:#191919;
+           span {
+            color:#1EAE98;
+            font-family: 'ScoreDream5',sans-serif;
+           }
+        }
+    }
+    .sub-info-box {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-size:1.2rem;
+        color:#6C6C6C;
+        font-family: 'SCoreDream4',sans-serif;
+        background-color: #F2F2F2;
+        margin-top:2.2rem;
+        border-radius: .5rem;
+        padding:1.5rem;
+        margin-bottom:5rem;
+        .circle-img {
+            width:1.2rem; height:1.2rem; margin-right:.4rem;
+        }
+    }
+}

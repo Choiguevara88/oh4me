@@ -1,0 +1,16 @@
+.dna-box {
+    max-width: 76.8rem;
+    background: #FFF;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 6rem);
+}
+
+@media screen and (min-width: 600px) {
+    .dna-box {
+        min-height: calc(100vh - 6rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

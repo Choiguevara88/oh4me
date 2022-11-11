@@ -1,0 +1,37 @@
+.aurora-view-box {
+    max-width: 76.8rem;
+    background: #FFF;
+    margin: 0 auto;
+    height: 100%;
+    padding: 2rem;
+    min-height: calc(100vh - 6rem);
+
+    .aurora-bbs-view {
+        max-width: 50rem;
+        width: 100%;
+        margin: 0 auto;
+        height: 100%;
+        padding: 1rem 0rem;
+        .aurora-bbs-head {
+            text-align: center;
+            h1.subject { font-size:1.8rem; font-family: 'SCoreDream5',sans-serif; color:#191919; font-weight: normal; text-align: center; margin-bottom:3rem; }
+            
+            span {font-size:1.2rem; font-family: 'SCoreDream4',sans-serif; color:#989CA4;    line-height: 1.6;display: inline-flex;
+                align-items: flex-start;}
+            img {border-radius: 1rem; max-width:100%; margin:0 auto;}
+        }
+        
+        .bbs-body-html {
+            background: #FFF;
+            padding:3rem 0rem;
+            font-size:1.5rem; color:#909090;
+            * {
+                font-family: 'SCoreDream4',sans-serif !important;
+                line-height: 1.6;
+            }
+            img {
+                margin:0 auto;max-width:100%; border-radius: 1rem;
+            }
+        }
+    }
+}

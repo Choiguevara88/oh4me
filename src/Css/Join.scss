@@ -1,0 +1,77 @@
+.join {
+    padding-top:3rem;
+    min-height:154.5rem;
+    
+    .input-box + .input-box { margin-top:2.4rem; }
+    .input-box + .no-label { margin-top:-2rem; }
+    .all-agree {
+        margin-top:5rem;
+        border-bottom:1px solid #DDDDE3;
+        padding-bottom:2rem;
+        margin-bottom: 2.4rem;
+    }
+    .all-agree label {
+        font-size:1.4rem;
+        font-family: 'SCoreDream5';
+    }
+    .agree-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        input[type='checkbox'] {display:none;}
+        label { position: relative;cursor: pointer;padding-left:3rem;}
+        input[type='checkbox'] + label::before { background: url(../Resources/Images/CheckOff.png)  no-repeat center ; content: ""; width: 20px; height: 20px; position: absolute;left: 0; top: -3px; transition: all ease .2s;}
+        input[type='checkbox']:checked+label::before {background:url(../Resources/Images/CheckOn.png) no-repeat center; border:none;object-fit: contain;}
+        label > span { 
+            font-size:1.4rem; font-family: 'SCoreDream4',sans-serif; 
+        }
+        label > span.color {color:#1EAE98}
+        button.service {
+            position:absolute;
+            right:0;
+            font-size: 1.2rem;
+            color:#ABABAB;
+            text-decoration: underline;
+            top:.2rem;
+        }
+    }
+    .sel-agree {
+        margin-top:2rem;
+    }
+}
+.modal-layerpop {
+    position: fixed; 
+    width: 100vw; 
+    height:100vh;
+    top: 0;
+    background: #F7F7F7;
+    display: none;
+    .modal-app-box {
+        max-width:75rem; 
+        background: #F7F7F7; 
+        margin:0 auto; 
+        height: calc(100vh - 6rem); 
+        width: 100vw;
+        
+        .mento-select-box + .mento-select-box { margin-top:.6rem;}
+
+        .mento-select-box {
+            box-shadow:0px 2px 3px 0px #d8e5f4;
+            input[type=radio] { display: none; }
+            label{ position:relative; cursor:pointer; width:100%; background-color: #FFF; display:flex; font-size:1.4rem; font-family: 'SCoreDream6',sans-serif; height:7rem; align-items: center; padding:0rem 2rem; }
+            input[type=radio]:checked+label { background:url(../Resources/Images/CheckSelect.png) no-repeat calc(100% - 2rem) center #FFF; background-size:1.5rem 1.1rem; border:none; object-fit: contain;}
+        }
+    }
+    .modal-app-box.service {
+        background: #FFF;
+        padding:4rem 2rem 6rem 2rem;
+        overflow: auto;
+        * {
+            font-family: 'SCoreDream4',sans-serif;
+        }
+        
+    }
+}
+.modal-layerpop.on {
+    display:block;
+}
