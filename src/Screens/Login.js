@@ -22,8 +22,25 @@ const Login = () => {
             window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':false} ));
         }
     }
-    useEffect(()=>{ rnMessage(); },[]);
-    
+    const [token, setToken] = useState('');
+    const [os, setOs] = useState('');
+    const setTokenCon = useCallback(i => {memberDispatch({ type:"TOKEN", info: i });});
+    const onMessageHandler = (e) => {
+        const event = JSON.parse(e.data)
+        if(event.token) { setToken(event.token); setTokenCon(event.token); }
+        if(event.os) { setOs(event.os); }
+    }
+    useEffect(() => {
+        const isUIWebView = () => {
+            return navigator.userAgent.toLowerCase().match(/\(ip.*applewebkit(?!.*(version|crios))/)
+        }
+        const receiver = isUIWebView() ? window : document
+        receiver.addEventListener('message', onMessageHandler)
+        return () => {
+            receiver.removeEventListener('message', onMessageHandler)
+        }
+    })    
+    useEffect(()=>{  rnMessage(); },[]);
     useEffect( () => {
         if(nickFormat(nick) && validPassword(passwd))  setDisabled(true);
         else                                           setDisabled(false);
@@ -31,7 +48,7 @@ const Login = () => {
     
     const onSubmit = async() =>{   
         const nick = state.nick;
-        await Api.send('member_login', { 'nick':nick, 'passwd':passwd }, (args)=>{  
+        await Api.send('member_login', { 'nick':nick, 'passwd':passwd, 'token':token, 'os':os }, (args)=>{
             if(args.result) { 
                 memberDispatch({ type:"LOGIN", info: args.data }); 
                 window.sessionStorage.setItem("midx", JSON.stringify(args.data.idx));

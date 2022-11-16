@@ -46,7 +46,7 @@ const Diary = () => {
     },[])
     const rnMessage = () => {
         if(window.ReactNativeWebView) {
-            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':false} ));
+            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':true} ));
         }
     }
     useEffect(()=>{ rnMessage(); },[]);

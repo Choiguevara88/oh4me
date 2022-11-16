@@ -42,7 +42,7 @@ const Push = () => {
     },[])
     const rnMessage = () => {
         if(window.ReactNativeWebView) {
-            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':false} ));
+            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':true} ));
         }
     }
     useEffect(()=>{ rnMessage(); },[]);
@@ -54,10 +54,10 @@ const Push = () => {
         <div className="home-box3">
             <div className="push-box">
             {push && push.map((e,i)=>{
-                // console.log(push);
-                let onClick = ()=>{
-                    if(push.screen_idx && push.screen) {
-                        history(`/${push.screen}`, {state:{idx:push.screen_idx, code:push.code}});
+                console.log(e);
+                let onClick = () => {
+                    if(e.screen_idx != null && e.screen != null) {
+                        history(`/${e.screen}`, {state:{idx:e.screen_idx, code:e.screen_code}});
                     } else {
                         return null
                     }

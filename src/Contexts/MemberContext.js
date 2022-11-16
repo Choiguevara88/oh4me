@@ -21,6 +21,7 @@ const initialState = {
     bbsList : [],
     bbsPage : 1,
     bbsPageLimit : false,
+    token           : '',
 
     
 }
@@ -31,7 +32,7 @@ const reducer = (state, action) => {
     let copy    = "";
 
     switch(action.type) {
-
+        case "TOKEN"    : return { ...state, token : action.info }
         case "LOGIN"    : return { ...state, loggedin:true, info: action.info }
         case "LOGOUT"   : return { ...state, info: null, loggedin: false, selMenu: 0, card9: [], card8: [], elCard3: [], selCate: '', catList: [], communityList: [], communityPage: 1, communityPageLimit: false, mentoringList: [], mentoringPage: 1, mentoringPageLimit: false, pushList: [], pushPage: 1, pushPageLimit: false, }
         case "SELMENU"  : return { ...state, selMenu: action.info }

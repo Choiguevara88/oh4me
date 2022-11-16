@@ -37,10 +37,9 @@ const Join = () => {
     const [isVisable2, setIsVisable2] = useState([]);
     
     const member = useMemberState();
-    const memberDispatch = useMemberDispatch();
     const rnMessage = () => {
         if(window.ReactNativeWebView) {
-            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':false} ));
+            window.ReactNativeWebView.postMessage(JSON.stringify( {'backHandler':true} ));
         }
     }
     useEffect(()=>{ rnMessage(); },[]);
@@ -99,7 +98,7 @@ const Join = () => {
     }
     const sendSms = async() => {
         const hp = state.hp;
-        await Api.send('member_sendSms', { 'hp':hp, 'token':'' }, (args)=>{  
+        await Api.send('member_sendSms', { 'hp':hp, 'token':member.token }, (args)=>{  
             setIsSend(args.result);
             setHpMsg(args.message);
             if(args.message === "최근 발송내역이 있습니다. 잠시 후 다시 요청해주세요.") alert(args.message);
@@ -108,7 +107,7 @@ const Join = () => {
     const checkSms = async() => {
         const hp = state.hp;
         const authnum = state.authnum;
-        await Api.send('member_checkSms', { 'hp':hp, 'authnum':authnum, 'token':'' }, (args)=>{  
+        await Api.send('member_checkSms', { 'hp':hp, 'authnum':authnum, 'token':member.token }, (args)=>{  
             setValidAuth(args.result);
             setValidHp(args.result);
             setAuthMsg(args.message);
@@ -173,8 +172,8 @@ const Join = () => {
     const onClickPost = ReactDaumPost(postConfig);
 
     const memberJoin = async () => {
-        let data = {...state, ...addr, agree:agree};
-        console.log("submit ::::::: ",data);
+        let data = {...state, ...addr, agree:agree, token:member.token };
+        // console.log("submit ::::::: ",data);
         await Api.send('member_join', data, (args)=>{  
             // console.log(args.data);
             if(args.result) {
@@ -234,6 +233,7 @@ const Join = () => {
                 </div>
             </form>
         </div>
+        
         </div>
         <FooterButton label="확인" disabled={!submit} onClick={memberJoin} />
         <div className="modal-bg" ref={ref2} onClick={()=>{ref2.current.style.display = "none";ref.current.style.display = "none"}}>
