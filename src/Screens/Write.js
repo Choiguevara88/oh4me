@@ -17,8 +17,8 @@ const Write = () => {
     const [submit, setSubmit] = useState(false);
 
     useEffect(()=>{
-        if(state.subject.length > 4 && state.content.length > 20)   setSubmit(true);
-        else                                                        setSubmit(false);
+        if(state.subject.length > 2 && state.content.length > 2)   setSubmit(true);
+        else                                                       setSubmit(false);
     },[state]);
     const rnMessage = () => {
         if(window.ReactNativeWebView) {

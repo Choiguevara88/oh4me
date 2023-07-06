@@ -76,13 +76,15 @@ header.color.color8 {background-color: #dd31a7;}
 header.color.color9 {background-color: #ff61b3;}
 
 header.home { background: #FFF; position: relative; width: 100%; padding:2rem 0rem 1.5rem 0rem; text-align: center; box-shadow: 0px 3px 15px 1px #EEE;}
-header.home img.header-logo {width:10.8rem; height:3.4rem;}
-header.home ul.header-menu {display: inline-flex; font-size:1.5rem; overflow:auto; width:100%; margin-top:2rem; }
+header.home img.header-logo {width:10.8rem; height:3.4rem; cursor:pointer;}
+header.home ul.header-menu {display: inline-flex; font-size:1.5rem; overflow:auto; width:100%; margin-top:2rem; justify-content: center; }
+
 @media screen and (min-width:429px){
   header.home ul.header-menu {
     justify-content: center;
   }
 }
+
 header.home ul.header-menu::-webkit-scrollbar { display: none;}
 header.home ul.header-menu li {display: inline-block; white-space:nowrap; padding-bottom:.5rem; cursor:pointer;}
 header.home ul.header-menu li + li {margin-left:2.5rem;}

@@ -79,13 +79,14 @@ const Update = () => {
                 <Input label="닉네임" name="nick" value={member.info.nick} intype="text" onChange={()=>{}} className="nick" disabled/>
                 <Input label="비밀번호" name="passwd" value={state.passwd} onChange={onChange} intype="password"  className="password" placeholder="새 비밀번호 영문, 숫자 조합 6자리 이상"/>
                 <InputNoLabel label="비밀번호 확인" name="passwd2" value={state.passwd2} onChange={onChange} intype="password" placeholder="새 비밀번호 재입력"  subinfo={passMsg} isvalid={passMsg!==""} iscomplete={validPass}/>
-                <Input label="우편번호" name="post" value={addr.post}  intype="tel" button buttonTxt="검색" onClick={()=>{ref2.current.style.display = "block"; onClickPost();}} maxlength={5} readonly={true} placeholder="우편번호를 검색해 주세요." />
+                {/* <Input label="우편번호" name="post" value={addr.post}  intype="tel" button buttonTxt="검색" onClick={()=>{ref2.current.style.display = "block"; onClickPost();}} maxlength={5} readonly={true} placeholder="우편번호를 검색해 주세요." />
                 <Input label="주소지" name="address1" value={addr.address1} onChange={onChange} intype="text" readonly={true} placeholder="우편번호를 검색하면 자동 입력됩니다." />
-                <Input label="상세주소" name="address2" value={addr.address2} onChange={onChangeAddr} intype="text" />
+                <Input label="상세주소" name="address2" value={addr.address2} onChange={onChangeAddr} intype="text" /> */}
             </form>
             </div>
         </div>
-        <FooterButton label="수정" disabled={!(validPass && addr.post!=="" && addr.address1 !=="" &&addr.address2!=="")} onClick={memberUpdate} />
+        {/* <FooterButton label="수정" disabled={!(validPass && addr.post!=="" && addr.address1 !=="" &&addr.address2!=="")} onClick={memberUpdate} /> */}
+        <FooterButton label="수정" disabled={!(validPass)} onClick={memberUpdate} />
         <div className="modal-bg" ref={ref2} onClick={()=>{ref2.current.style.display = "none";ref.current.style.display = "none"}}>
             <div className="daum-post-modal" ref={ref} />
         </div>

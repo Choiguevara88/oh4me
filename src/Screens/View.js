@@ -203,7 +203,7 @@ const View = () => {
             <div className="bbs-head">
                 <div className="row space-b gap10 a-center bottom17">
                     <h1 className="subject">{bbs?.subject}</h1>
-                    <h4 className="subject">조회 수 {bbs.cnt}</h4>
+                    <h4 className="subject">조회수 {bbs.cnt}</h4>
                 </div>
                 <div className="row space-b a-center">
                     <span>{bbs.wdate2}</span>

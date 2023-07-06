@@ -38,11 +38,10 @@ const Diary = () => {
     useEffect(()=>{
         if(member.loggedin !== true) { history("/", true); }
         else {
-            setDna([...member.info.dna_number]);
+            setDna( [[...member.info.dna_number][1]] );
             setChartData([...member.info.life_graph]);
         }
         window.scrollTo(0, 0);
-        // console.log(member.info);
     },[])
     const rnMessage = () => {
         if(window.ReactNativeWebView) {
@@ -98,8 +97,7 @@ const Diary = () => {
                     <h1 className="box-label">DNA 컬러</h1>
                     <div className="j-center card-wrapper">
                         {
-                            dna && dna.map((e,i)=>{
-                                
+                            dna && dna.map((e, i)=>{
                                 let name =`dna-card-${i}`;
                                 let card = cardList9.filter(c => c.prior === e+"");
                                 return (

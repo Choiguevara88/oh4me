@@ -8,7 +8,8 @@ import '../Css/Home.scss';
 import logo from '../Resources/Images/LogoBlackPortrait.png';
 
 const Home = () => {
-    const menuList = [{label:'오로라 테라피',value:0}, {label:'심리테스트',value:1}, {label:'오로라 다이어리',value:2}, {label:'커뮤니티',value:3}];
+    // const menuList = [{label:'오로라 테라피',value:0}, {label:'심리테스트',value:1}, {label:'오로라 다이어리',value:2}, {label:'커뮤니티',value:3}];
+    const menuList = [{label:'오로라 테라피',value:0}, {label:'심리테스트',value:1}, {label:'커뮤니티',value:2}];
     const member = useMemberState();
     const memberDispatch = useMemberDispatch();
     const history = useNavigate();
@@ -259,7 +260,7 @@ const Home = () => {
             : menu === 2 ? 
             cardLoading ?
             <>
-            <div className="home-box">
+            {/* <div className="home-box">
                 <div className="card-box-9">
                     <div className="card-wrapper bottom20">
                     {cardList9 && cardList9.map((e,i)=>{
@@ -268,9 +269,39 @@ const Home = () => {
                     })}
                     </div>
                     <ButtonRoundLong label="DNA 컬러 보러가기" styleName="" onClick={()=>{history('/dna')}} />
+                </div>    
+            </div> */}
+            <div className="home-box2">
+                    <div className="bbs-box">
+                        <div className="cat-box">
+                            {catList && catList.map((e,i)=>{
+                                return <CategoryButton key={`bbscat_${i}`} onClick={()=>{setBbsList(e)}} label={e} on={selCat === e} />
+                            })}
+                        </div>
+                        {bbs && bbs.map((e,i)=>{
+                            return <BBSList data={e} key={`bbs_${selCat}_${i}`} onClick={()=>{history('/view', {state:{code:'community', idx:e.idx}})}} />
+                        })}
+                        {bbsLimit ?
+                        <ButtonRoundLong label="더보기" styleName="gray" onClick={()=>{getBbsList(page)}} />
+                        : <div className={bbs?.length < 1 ? "empty-bbs" : "last-bbs"}>{bbs?.length < 1 ? "등록된 게시글이 없습니다." : "마지막 게시글입니다."}</div> 
+                        }
+                    <WriteButton onClick={ ()=>{ history('/write', {state:{code:'community',category:selCat}}) } } />
+                    </div>
+                    
                 </div>
-                
-            </div>
+                <div className="home-box2">
+                    <div className="bbs-box">
+                        <ButtonRoundLong label="멘토링" styleName="lime" onClick={()=>{goMentoring()}} />
+                        <p className="mentoring-info">
+                            멘토링은 익명의 소통공간에서<br/>
+                            마음속이야기를 자유롭게 표현하면서<br/>
+                            서로의 고민을 나누고 힘이 되는 공간입니다.<br/>
+                            <br/>
+                            상담사/멘토가 피드백을 제공해 드립니다.<br/>
+                            비공개로 안심하고 상담 하시면 됩니다.
+                        </p>
+                    </div>
+                </div>
             </>
             :   
             <div>empty</div>

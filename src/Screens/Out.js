@@ -30,7 +30,10 @@ const Out = () => {
             if(args.result) {
                 memberDispatch({ type:"LOGOUT" });
                 window.sessionStorage.removeItem("midx");
-                window.location.replace("/")
+                window.location.replace("/");
+                if(window.ReactNativeWebView) {
+                    window.ReactNativeWebView.postMessage(JSON.stringify( {'login':false} ));
+                }
             }
         });
     }

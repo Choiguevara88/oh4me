@@ -9,7 +9,8 @@ import Api from '../Api';
 import '../Css/Join.scss';
 
 const Join = () => {
-    const [state, onChange] = useInput({ nick:'', passwd:'', passwd2:'', birthday:'', sex:'', category:'', hp:'', authnum:'', email:'', address2:'', edu:'0', kind:'0'});
+    // const [state, onChange] = useInput({ nick:'', passwd:'', passwd2:'', birthday:'', sex:'', category:'', hp:'', authnum:'', email:'', address2:'', edu:'0', kind:'0'});
+    const [state, onChange] = useInput({ nick:'', passwd:'', passwd2:'', birthday:'', sex:'', category:'', hp:'', authnum:'', email:'', edu:'0', kind:'0'});
     const history = useNavigate();
     const [nickMsg, setNickMsg] = useState('');
     const [validNick, setValidNick] = useState(false);
@@ -140,16 +141,20 @@ const Join = () => {
 
     const buttonActivate = () => {
         for(let key in state) { if(state[key]==="") { setSubmit(false); return `state : ${key}`; } }
-        for(let key in addr) { if(addr[key]==="") { setSubmit(false); return `addr : ${key}`; } }
+        // for(let key in addr) { if(addr[key]==="") { setSubmit(false); return `addr : ${key}`; } }
         if(!validNick || !validPass || !validBirthday || !validHp || !validAuth || !validEmail) { setSubmit(false); return `valid false`; }
         if((requiredServe.filter(x => !agree.includes(x))).length > 0) {setSubmit(false); return `array false`;}
         setSubmit(true); return `success`;
     }
 
+    // useEffect(()=>{
+    //     // console.log(buttonActivate());
+    //     buttonActivate()
+    // },[state, addr, agree]);
     useEffect(()=>{
         // console.log(buttonActivate());
         buttonActivate()
-    },[state, addr, agree]);
+    },[state, agree, validNick, validPass, validBirthday, validHp, validAuth, validEmail]);
 
     const ref = useRef(null);
     const ref2 = useRef(null);
@@ -204,9 +209,9 @@ const Join = () => {
                 <Input label="휴대 전화 번호" name="hp" value={state.hp} onChange={onChange} intype="tel" button={validatePhone(state.hp)&&!validAuth} buttonTxt={!isSend?"인증번호":"재발송"} onClick={sendSms} maxlength={13} readonly={validHp} subinfo={hpMsg} isvalid={hpMsg!==""} />
                 {isSend && <InputNoLabel label="인증번호" name="authnum" value={state.authnum} onChange={onChange} intype="tel" subinfo={authMsg} isvalid={authMsg!==""} iscomplete={validAuth} colorbutton={!validAuth} readonly={validAuth} buttonTxt="인증확인" onClick={checkSms} maxlength={6}/> }
                 <Input label="이메일" name="email" value={state.email} onChange={onChange} intype="email" subinfo={emailMsg} isvalid={emailMsg!==""} iscomplete={validEmail} button buttonTxt={"중복확인"} onClick={checkEmail} readonly={validEmail}/>
-                <Input label="우편번호" name="post" value={addr.post}  intype="tel" button buttonTxt="검색" onClick={()=>{ref2.current.style.display = "block"; onClickPost();}} maxlength={5} readonly={true} placeholder="우편번호를 검색해 주세요." />
+                {/* <Input label="우편번호" name="post" value={addr.post}  intype="tel" button buttonTxt="검색" onClick={()=>{ref2.current.style.display = "block"; onClickPost();}} maxlength={5} readonly={true} placeholder="우편번호를 검색해 주세요." />
                 <Input label="주소지" name="address1" value={addr.address1} onChange={onChange} intype="text" readonly={true} placeholder="우편번호를 검색하면 자동 입력됩니다." />
-                <Input label="상세주소" name="address2" value={state.address2} onChange={onChange} intype="text" />
+                <Input label="상세주소" name="address2" value={state.address2} onChange={onChange} intype="text" /> */}
                 <div className="all-agree agree-box">
                     <input type="checkbox" id="allChk" onChange={(el)=>{onCheckedAll(el.target.checked)}}/><label htmlFor='allChk'>아래 약관에 모두 동의합니다.</label>
                 </div>

@@ -27,8 +27,9 @@ const Login = () => {
     const setTokenCon = useCallback(i => {memberDispatch({ type:"TOKEN", info: i });});
     const onMessageHandler = (e) => {
         const event = JSON.parse(e.data)
-        if(event.token) { setToken(event.token); setTokenCon(event.token); }
-        if(event.os) { setOs(event.os); }
+        if(event.token) { setToken(event.token); setTokenCon(event.token); autoLogin(event.token); }
+        if(event.os)    { setOs(event.os); }
+        if(event.login) {  }
     }
     useEffect(() => {
         const isUIWebView = () => {
@@ -52,10 +53,29 @@ const Login = () => {
             if(args.result) { 
                 memberDispatch({ type:"LOGIN", info: args.data }); 
                 window.sessionStorage.setItem("midx", JSON.stringify(args.data.idx));
-            } 
+                if(window.ReactNativeWebView) {
+                    window.ReactNativeWebView.postMessage(JSON.stringify( {'login':true,'nick':args.data.nick} ));
+                }
+            }
             else            { alert(args.message); }
         });
     }
+    
+    const autoLogin = async(token) => {
+        if(window.ReactNativeWebView) {
+            window.ReactNativeWebView.postMessage(JSON.stringify( {'autologin':'active'} ));
+        }
+        await Api.send('member_autologin', { 'token':token }, (args)=>{
+            if(args.result) { 
+                memberDispatch({ type:"LOGIN", info: args.data }); 
+                window.sessionStorage.setItem("midx", JSON.stringify(args.data.idx));
+                if(window.ReactNativeWebView) {
+                    window.ReactNativeWebView.postMessage(JSON.stringify( {' login':true, 'nick':args.data.nick } ));
+                }
+            }
+        });
+    }
+
     useEffect(()=>{
         Api.send('community_category', {}, (args)=> {
             if(args.result) { 
